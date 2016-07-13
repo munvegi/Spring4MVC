@@ -1,31 +1,42 @@
 package com.munvegi.springmvc.model;
 
+import javax.persistence.*;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "USER")
 public class User {
 
-	private long id;
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", nullable = false)
+	private int id;
+
+	@Column(name = "NAME", nullable = false)
 	private String name;
-	
+
+	@Column(name = "AGE", nullable = false)
 	private int age;
-	
-	private double salary;
+
+	@Column(name = "SALARY", nullable = false)
+	private BigDecimal salary;
 
 	public User(){
 		id=0;
 	}
 	
-	public User(long id, String name, int age, double salary){
+	public User(int id, String name, int age, BigDecimal salary){
 		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.salary = salary;
 	}
 	
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -45,11 +56,11 @@ public class User {
 		this.age = age;
 	}
 
-	public double getSalary() {
+	public BigDecimal getSalary() {
 		return salary;
 	}
 
-	public void setSalary(double salary) {
+	public void setSalary(BigDecimal salary) {
 		this.salary = salary;
 	}
 

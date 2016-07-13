@@ -1,5 +1,6 @@
 package com.munvegi.springmvc;
  
+import java.math.BigDecimal;
 import java.net.URI;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -41,7 +42,7 @@ public class SpringRestTestClient {
     private static void createUser() {
         System.out.println("Testing create User API----------");
         RestTemplate restTemplate = new RestTemplate();
-        User user = new User(0,"Sarah",51,134);
+        User user = new User(0,"Sarah",51, new BigDecimal("134"));
         URI uri = restTemplate.postForLocation(REST_SERVICE_URI+"/user/", user, User.class);
         System.out.println("Location : "+uri.toASCIIString());
     }
@@ -50,7 +51,7 @@ public class SpringRestTestClient {
     private static void updateUser() {
         System.out.println("Testing update User API----------");
         RestTemplate restTemplate = new RestTemplate();
-        User user  = new User(1,"Tomy",33, 70000);
+        User user  = new User(1,"Tomy",33, new BigDecimal("70000"));
         restTemplate.put(REST_SERVICE_URI+"/user/1", user);
         System.out.println(user);
     }

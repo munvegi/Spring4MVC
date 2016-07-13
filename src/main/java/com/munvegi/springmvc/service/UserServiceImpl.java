@@ -1,67 +1,43 @@
 package com.munvegi.springmvc.service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
-
+import com.munvegi.springmvc.dao.UserDAO;
+import com.munvegi.springmvc.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.munvegi.springmvc.model.User;
+import java.util.List;
 
 @Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService{
-	
-	private static final AtomicLong counter = new AtomicLong();
-	
-	private static List<User> users;
-	
-	static{
-		users= populateDummyUsers();
-	}
+
+	@Autowired
+	private UserDAO userDAO;
+
 
 	public List<User> findAllUsers() {
-		return users;
+		return userDAO.findAll();
 	}
 	
-	public User findById(long id) {
-		for(User user : users){
-			if(user.getId() == id){
-				return user;
-			}
-		}
-		return null;
+	public User findById(int id) {
+		return userDAO.findById(id);
 	}
 	
 	public User findByName(String name) {
-		for(User user : users){
-			if(user.getName().equalsIgnoreCase(name)){
-				return user;
-			}
-		}
 		return null;
 	}
 	
 	public void saveUser(User user) {
-		user.setId(counter.incrementAndGet());
-		users.add(user);
+		userDAO.save(user);
 	}
 
 	public void updateUser(User user) {
-		int index = users.indexOf(user);
-		users.set(index, user);
+		userDAO.update(user);
 	}
 
-	public void deleteUserById(long id) {
-		
-		for (Iterator<User> iterator = users.iterator(); iterator.hasNext(); ) {
-		    User user = iterator.next();
-		    if (user.getId() == id) {
-		        iterator.remove();
-		    }
-		}
+	public void deleteUserById(int id) {
+		userDAO.deleteById(id);
 	}
 
 	public boolean isUserExist(User user) {
@@ -69,16 +45,7 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public void deleteAllUsers(){
-		users.clear();
-	}
 
-	private static List<User> populateDummyUsers(){
-		List<User> users = new ArrayList<User>();
-		users.add(new User(counter.incrementAndGet(),"Pepito",31, 40000));
-		users.add(new User(counter.incrementAndGet(),"Tom",40, 50000));
-		users.add(new User(counter.incrementAndGet(),"Jerome",45, 90000));
-		users.add(new User(counter.incrementAndGet(),"Silvia",50, 40000));
-		return users;
-	}
 
+	}
 }
