@@ -35,8 +35,7 @@ public class UserRestController {
         }
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
- 
- 
+
     //-------------------Retrieve Single User--------------------------------------------------------
      
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
