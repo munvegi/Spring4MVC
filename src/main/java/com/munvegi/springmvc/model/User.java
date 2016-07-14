@@ -3,7 +3,6 @@ package com.munvegi.springmvc.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-
 @Entity
 @Table(name = "USER")
 public class User {
