@@ -3,6 +3,7 @@ package com.munvegi.springmvc.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+
 @Entity
 @Table(name = "USER")
 public class User {
@@ -68,7 +69,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+        result = (prime * result) + (id ^ (id >>> 32));
 		return result;
 	}
 
@@ -81,10 +82,8 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
+        return id == other.id;
+    }
 
 	@Override
 	public String toString() {
