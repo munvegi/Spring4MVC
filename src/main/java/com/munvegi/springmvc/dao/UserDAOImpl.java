@@ -1,8 +1,5 @@
 package com.munvegi.springmvc.dao;
 
-/**
- * Created by admin on 07/07/2016.
- */
 import com.munvegi.springmvc.model.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
