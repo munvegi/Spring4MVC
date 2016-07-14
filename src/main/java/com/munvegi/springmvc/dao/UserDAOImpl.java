@@ -27,11 +27,6 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void update(User user) {
-        sessionFactory.getCurrentSession().update(user);
-
-    }
-    @Override
     public void deleteById(int id) {
         Session session = sessionFactory.getCurrentSession();
         User user = (User) session.createCriteria(User.class).add(Restrictions.idEq(id))
@@ -39,6 +34,13 @@ public class UserDAOImpl implements UserDAO {
         session.delete(user);
 
     }
+
+    @Override
+    public void update(User user) {
+        sessionFactory.getCurrentSession().update(user);
+
+    }
+
 
     @Override
     public List<User> findAll() {
