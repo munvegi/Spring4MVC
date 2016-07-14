@@ -21,7 +21,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-//@ComponentScan({ "com.munvegi.springmvc.configuration" }) // Podria quitarse?
+//@ComponentScan({ "com.munvegi.springmvc.configuration" }) // Could it be removed?
 @PropertySource(value = { "classpath:application.properties" })
 public class HibernateConfiguration {
 
