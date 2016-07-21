@@ -52,7 +52,7 @@ public class UserDAOImplTest {
 
         // Then
         inOrder.verify(sessionFactory).getCurrentSession();
-        inOrder.verify(session).persist(Matchers.any(User.class));
+        inOrder.verify(session).save(Matchers.any(User.class));
     }
 
     @Test
