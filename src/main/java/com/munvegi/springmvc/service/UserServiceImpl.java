@@ -44,8 +44,5 @@ public class UserServiceImpl implements UserService{
 		return findByName(user.getName())!=null;
 	}
 	
-	public void deleteAllUsers(){
-
-
-	}
+	public void deleteAllUsers(){}
 }

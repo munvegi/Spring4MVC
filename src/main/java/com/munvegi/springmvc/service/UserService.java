@@ -23,5 +23,4 @@ public interface UserService {
 	void deleteAllUsers();
 	
 	public boolean isUserExist(User user);
-	
 }
