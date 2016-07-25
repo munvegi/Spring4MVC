@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public User findByName(String name) {
-		return null;
+		return userDAO.findByName(name);
 	}
 	
 	public void saveUser(User user) {
