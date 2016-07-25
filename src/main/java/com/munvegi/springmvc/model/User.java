@@ -3,6 +3,13 @@ package com.munvegi.springmvc.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+//Domain Objects. Objects from the business specific area that represent something meaningful to the domain expert.
+// Domain objects are mostly represented by entities and value objects. Generaly speaking,
+// most objects that live in domain layer contribute to the model and are domain objects.
+//
+//Entity. An object fundamentally defined not by its attributes, but by a thread of continuity and identity.
+// (Meaning it must have Id)
+
 @Entity
 @Table(name = "USER")
 public class User {
