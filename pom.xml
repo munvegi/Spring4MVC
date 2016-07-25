@@ -59,11 +59,14 @@
 			<version>${mysql.connector.version}</version>
 		</dependency>
 
+        <!-- Jackson library to parse to JSON -->
+        <!-- Spring will [behind the scenes] use HTTP Message converters to convert the HTTP request/response body into domain object -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		    <version>${jackson.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -81,7 +84,6 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
 	<build>
