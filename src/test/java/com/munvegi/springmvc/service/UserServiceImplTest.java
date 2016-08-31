@@ -2,7 +2,6 @@ package com.munvegi.springmvc.service;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.times;
 
 import com.munvegi.springmvc.dao.UserDAO;
@@ -50,14 +49,13 @@ public class UserServiceImplTest {
         // Then
         Mockito.verify(userDAO).findAll();
         assertThat(actual, is(expected));
-
     }
 
     @Test
     public void testFindById() throws Exception {
 
         final int ID = 1;
-        final User user = new User(ID, "John", 30, BigDecimal.TEN);
+        final User user = new User(ID, "John", 30, BigDecimal.TEN );
         // stubbing
         Mockito.when(userDAO.findById(Matchers.anyInt())).thenReturn(user); // Argument matcher
 
@@ -77,7 +75,7 @@ public class UserServiceImplTest {
     @Test
     public void testSaveUser() throws Exception {
 
-        User user = new User(1, "John", 30, BigDecimal.TEN);
+        User user = new User(1, "John", 30, BigDecimal.TEN );
 
         userService.saveUser(user);
 
@@ -109,7 +107,7 @@ public class UserServiceImplTest {
     @Test
     public void testIsUserExist() throws Exception {
 
-        User user = new User(1, "John", 30, BigDecimal.TEN);
+        User user = new User(1, "John", 30, BigDecimal.TEN );
         UserServiceImpl spy = Mockito.spy(userService);
 
         spy.isUserExist(user);

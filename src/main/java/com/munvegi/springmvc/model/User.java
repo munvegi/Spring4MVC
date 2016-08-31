@@ -2,6 +2,8 @@ package com.munvegi.springmvc.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 //Domain Objects. Objects from the business specific area that represent something meaningful to the domain expert.
 // Domain objects are mostly represented by entities and value objects. Generaly speaking,
@@ -28,15 +30,28 @@ public class User {
 	@Column(name = "SALARY", nullable = false)
 	private BigDecimal salary;
 
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Phone> phones;
+
+
+
 	public User(){
 		id=0;
 	}
-	
+
 	public User(int id, String name, int age, BigDecimal salary){
 		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.salary = salary;
+	}
+
+	public User(int id, String name, int age, BigDecimal salary, List<Phone> phones){
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.salary = salary;
+		this.phones = phones;
 	}
 	
 	public int getId() {
@@ -69,6 +84,19 @@ public class User {
 
 	public void setSalary(BigDecimal salary) {
 		this.salary = salary;
+	}
+
+	public List<Phone> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(List<Phone> phones) {
+		this.phones = phones;
+	}
+
+	public void addPhone(Phone phone) {
+		if (this.phones == null) this.phones = new ArrayList<Phone>();
+		this.phones.add(phone);
 	}
 
 	@Override

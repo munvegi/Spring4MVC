@@ -3,6 +3,7 @@ package com.munvegi.springmvc.dao;
 import com.munvegi.springmvc.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,8 +12,10 @@ import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
 
 /**
  * Created by admin on 18/07/2016.
@@ -86,5 +89,47 @@ public class UserDAOImplTest {
     @Test
     public void testFindAll() throws Exception {
 
+    }
+
+    @Test
+    public void findByName() throws Exception {
+
+        // Given
+        String name = "John";
+        User user = new User();
+        user.setName(name);
+        Query query = Mockito.mock(Query.class);
+        Mockito.when(sessionFactory.getCurrentSession()).thenReturn(session);
+        Mockito.when(session.createQuery(anyString())).thenReturn(query);
+        Mockito.when(query.getSingleResult()).thenReturn(user);
+
+        // When
+        User actual = userDAO.findByName(name);
+
+        // Then
+        Mockito.verify(session).createQuery("from User where name = :name");
+        Mockito.verify(query).setParameter("name", name);
+        assertThat(actual, is(user));
+    }
+
+    @Test
+    public void findByName_NoUser_ReturnNull() throws Exception {
+
+        // Given
+        String name = "John";
+        User user = new User();
+        user.setName(name);
+        Query query = Mockito.mock(Query.class);
+        Mockito.when(sessionFactory.getCurrentSession()).thenReturn(session);
+        Mockito.when(session.createQuery(anyString())).thenReturn(query);
+        Mockito.when(query.getSingleResult()).thenThrow(new RuntimeException());
+
+        // When
+        User actual = userDAO.findByName(name);
+
+        // Then
+        Mockito.verify(session).createQuery("from User where name = :name");
+        assertNull(actual);
+        assertThat(actual, is(nullValue()));
     }
 }

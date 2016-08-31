@@ -51,7 +51,7 @@ public class SpringRestTestClient {
     private static void updateUser() {
         System.out.println("Testing update User API----------");
         RestTemplate restTemplate = new RestTemplate();
-        User user  = new User(1,"Tomy",33, new BigDecimal("70000"));
+        User user  = new User(1,"Tomy",33, new BigDecimal("70000") );
         restTemplate.put(REST_SERVICE_URI+"/user/1", user);
         System.out.println(user);
     }

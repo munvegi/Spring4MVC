@@ -1,6 +1,7 @@
 package com.munvegi.springmvc.service;
 
 import com.munvegi.springmvc.dao.UserDAO;
+import com.munvegi.springmvc.model.Phone;
 import com.munvegi.springmvc.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,8 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public User findById(int id) {
-		return userDAO.findById(id);
+		User user = userDAO.findById(id);
+		return user;
 	}
 	
 	public User findByName(String name) {
