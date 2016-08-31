@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages = {"com.munvegi.springmvc.configuration",
+        "com.munvegi.springmvc.aspects",
         "com.munvegi.springmvc.dao",
         "com.munvegi.springmvc.model",
         "com.munvegi.springmvc.service"})
