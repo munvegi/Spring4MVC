@@ -19,7 +19,7 @@ import com.munvegi.springmvc.model.User;
 import com.munvegi.springmvc.service.UserService;
 
 @RestController
-//@RequestMapping("/user")
+//@RequestMapping("/users")
 public class UserRestController {
  
     @Autowired
@@ -27,19 +27,20 @@ public class UserRestController {
 
     //-------------------Retrieve All Users--------------------------------------------------------
      
-    @RequestMapping(value = "/user/", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/", method = RequestMethod.GET)
     public ResponseEntity<List<User>> listAllUsers() {
         System.out.println(this.getClass().getSimpleName() + ": Proceeding to retrieve all users.");
         List<User> users = userService.findAllUsers();
         if(users.isEmpty()){
             return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
+
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
     //-------------------Retrieve Single User--------------------------------------------------------
      
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUser(@PathVariable("id") int id) {
         System.out.println("Fetching User with id " + id);
         User user = userService.findById(id);
@@ -54,7 +55,7 @@ public class UserRestController {
      
     //-------------------Create a User--------------------------------------------------------
      
-    @RequestMapping(value = "/user/", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/", method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody User user,    UriComponentsBuilder ucBuilder) {
         System.out.println("Creating User " + user.getName());
  
@@ -73,7 +74,7 @@ public class UserRestController {
      
     //------------------- Update a User --------------------------------------------------------
      
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
     public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody User user) {
         System.out.println("Updating User " + id);
 
@@ -94,7 +95,7 @@ public class UserRestController {
  
     //------------------- Delete a User --------------------------------------------------------
      
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteUser(@PathVariable("id") int id) {
         System.out.println("Fetching & Deleting User with id " + id);
  
@@ -111,7 +112,7 @@ public class UserRestController {
      
     //------------------- Delete All Users --------------------------------------------------------
      
-    @RequestMapping(value = "/user/", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/users/", method = RequestMethod.DELETE)
     public ResponseEntity<User> deleteAllUsers() {
         System.out.println("Deleting All Users");
  
