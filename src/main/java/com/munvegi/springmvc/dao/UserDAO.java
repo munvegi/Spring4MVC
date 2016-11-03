@@ -4,6 +4,7 @@ import com.munvegi.springmvc.model.User;
 
 import java.util.List;
 
+// Feature branch comment
 public interface UserDAO {
     void save(User user);
 
