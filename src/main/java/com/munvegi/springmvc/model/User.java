@@ -24,11 +24,12 @@ public class User {
 	@Column(name = "NAME", nullable = false)
 	private String name;
 
-	@Column(name = "AGE", nullable = false)
-	private int age;
-
+	// Salary might go after age
 	@Column(name = "SALARY", nullable = false)
 	private BigDecimal salary;
+
+	@Column(name = "AGE", nullable = false)
+	private int age;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Phone> phones;
