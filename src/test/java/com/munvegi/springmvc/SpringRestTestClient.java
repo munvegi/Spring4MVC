@@ -13,22 +13,7 @@ public class SpringRestTestClient {
  
     public static final String REST_SERVICE_URI = "http://localhost:8080/Spring4MVCCRUDRestService";
      
-    /* GET */
-    @SuppressWarnings("unchecked")
-    private static void listAllUsers(){
-        System.out.println("Testing listAllUsers API-----------");
-         
-        RestTemplate restTemplate = new RestTemplate();
-        List<LinkedHashMap<String, Object>> usersMap = restTemplate.getForObject(REST_SERVICE_URI+"/user/", List.class);
-         
-        if(usersMap!=null){
-            for(LinkedHashMap<String, Object> map : usersMap){
-                System.out.println("User : id="+map.get("id")+", Name="+map.get("name")+", Age="+map.get("age")+", Salary="+map.get("salary"));;
-            }
-        }else{
-            System.out.println("No user exist----------");
-        }
-    }
+
      
     /* GET */
     private static void getUser(){
@@ -37,7 +22,24 @@ public class SpringRestTestClient {
         User user = restTemplate.getForObject(REST_SERVICE_URI+"/user/1", User.class);
         System.out.println(user);
     }
-     
+
+    /* GET */
+    @SuppressWarnings("unchecked")
+    private static void listAllUsers(){
+        System.out.println("Testing listAllUsers API-----------");
+
+        RestTemplate restTemplate = new RestTemplate();
+        List<LinkedHashMap<String, Object>> usersMap = restTemplate.getForObject(REST_SERVICE_URI+"/user/", List.class);
+
+        if(usersMap!=null){
+            for(LinkedHashMap<String, Object> map : usersMap){
+                System.out.println("User : id="+map.get("id")+", Name="+map.get("name")+", Age="+map.get("age")+", Salary="+map.get("salary"));;
+            }
+        }else{
+            System.out.println("No user exist----------");
+        }
+    }
+
     /* POST */
     private static void createUser() {
         System.out.println("Testing create User API----------");
