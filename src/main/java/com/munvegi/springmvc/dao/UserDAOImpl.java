@@ -54,13 +54,6 @@ public class UserDAOImpl implements UserDAO {
 
 
     @Override
-    public List<User> findAll() {
-        Query<User> query = getSession().createQuery("from User");
-        List<User> list = query.list();
-        return list;
-    }
-
-    @Override
     public User findByName(String name) {
         Query<User> query = sessionFactory.getCurrentSession().createQuery("from User where name = :name");
         query.setParameter("name", name);
@@ -70,6 +63,13 @@ public class UserDAOImpl implements UserDAO {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public List<User> findAll() {
+        Query<User> query = getSession().createQuery("from User");
+        List<User> list = query.list();
+        return list;
     }
 
     // Unused, replaced by an HQL query in the findAll() method
