@@ -8,10 +8,10 @@
   <name>Spring4MVC Maven Webapp</name>
 
   	<properties>
-		<springframework.version>4.2.0.RELEASE</springframework.version>
+		<springframework.version>5.3.20</springframework.version>
 		<hibernate.version>5.2.1.Final</hibernate.version>
 		<mysql.connector.version>5.1.31</mysql.connector.version>
-		<jackson.version>2.5.3</jackson.version>
+		<jackson.version>2.13.3</jackson.version>
 	</properties>
 
 	<dependencies>
